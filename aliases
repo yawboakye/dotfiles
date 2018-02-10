@@ -1,0 +1,51 @@
+# vim: ft=sh
+# useful shortcuts so I don't have to type plenty
+#
+# navigation directories/paths
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+alias c="pygmentize -O style=monokai -f console256 -g"  # Requires Pygments, a Python syntax-highlighting package.
+alias h="http"                                          # `http` is curl, but with colors and better formatting.
+alias g="git"                                           # I never use this alias.
+alias p="pry"                                           # `pry` way better than IRB. Use it! Run `gem install pry` to install
+alias l="less -X"
+alias v="vim"
+
+alias rm="command rm -rf"
+alias md="command mkdir -p"
+alias ls="command ls --color"
+alias ll="ls -alrth"
+alias ok="git push origin master && git push heroku master"
+alias be="bundle exec"
+alias gz="/usr/local/bin/pigz"
+alias hp="heroku pg:psql"
+alias hc="heroku config" # Get all config vars.
+alias hl="heroku logs --tail"
+alias tf="awsudo -u yaw-af terraform"
+alias pk="awsudo -u yaw-af packer"
+alias vv="vim ~/.vimrc.local"
+alias vb="vim ~/.vimrc.bundles.local"
+
+alias sha="/usr/bin/shasum"
+alias hex="openssl rand -base64"
+alias ack="ag"
+alias akc="ag"
+alias git=hub # Hub = https://hub.github.com
+alias gpr="git pull --rebase"
+
+
+alias grep="command grep -n --color=auto"
+alias gurl="curl --compressed"
+alias venv="virtualenv venv"
+
+alias pretty="python -m json.tool | pygmentize -O style=monokai -f console256 -g"
+alias rainbow='yes "$(seq 231 -1 16)" | while read i; do printf "\x1b[48;5;${i}m\n"; sleep .02; done'
+alias activate="test -d venv && source venv/bin/activate"
+
+# Push from current branch to master on Heroku, and run bin/rake db:migrate.
+# The second part fails (without problems) if it's not a Rails project.
+alias stage='git push heroku "$(git rev-parse --abbrev-ref HEAD 2> /dev/null)":master && heroku run bin/rake db:migrate'
+alias op="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoclean && sudo apt autoremove"
+alias i="sudo apt update && sudo apt install -y"

@@ -1,0 +1,72 @@
+# vim: ft=sh
+# Functions I Like.
+#
+
+# I really need to see what goes into requirements.txt so a tee-ed it.
+freeze() {
+    command -v deactivate &> /dev/null && if [[ "$PS1" =~ ^\(venv\) ]]; then
+      pip freeze | tee requirements.txt
+      echo -e "\033[1;33mProject requirements frozen into requirements.txt. \033[1;31m(last mod. $(date))\033[0m"
+    else
+      echo -e "\033[1;31m`pwd` \033[1;33mis not a Python virtual env directory || your virtual env has a different name than venv\033[0m"
+    fi
+}
+
+alias z="freeze"
+
+# Generate n-length hexadecimal string. Requires openssl.
+nhex() { openssl rand -hex "$1" | tr -d "\n"; echo; }
+
+# Edit a dotfile.
+edit() {
+  local __editor_cmd="$(which vim)"
+  case $1 in
+  "f") $__editor_cmd $HOME/.functions ;;
+  "b") $__editor_cmd $HOME/.bash_profile ;;
+  "e") $__editor_cmd $HOME/.exports ;;
+  "a") $__editor_cmd $HOME/.aliases ;;
+  "i") $__editor_cmd $HOME/.inputrc ;;
+  esac
+}
+
+
+# Discover my (Git) productivity.
+__discover_my_productivity() {
+  local __curdir=`pwd`
+  trap "echo Something's definitely wrong" ERR TERM EXIT
+  GIT_AUTHOR=${GIT_AUTHOR-"`git config user.name`"}
+  WORKS=${WORKS-$HOME}
+  for __git_pro in `find $WORKS -name .git -type d 2> /dev/null`
+  do
+    cd "$__git_pro"
+    local __msg=`$1 $2 --color`
+    [ -n "$__msg" ] && echo -e "\no \033[36m" `dirname "$__git_pro"`:"\033[0m" "\n$__msg"
+  done
+
+  unset __git_pro
+
+  trap - ERR TERM EXIT
+  cd "$__curdir"
+}
+
+__today_gitlog() { git log --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative --author="$GIT_AUTHOR" --since=midnight $1 $2; }
+__week_gitlog() { git log --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative --author="$GIT_AUTHOR" --since=1.week.ago $1 $2; }
+__ayer_gitlog() { git log --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative --author="$GIT_AUTHOR" --since=1.day.ago --before=midnight $1 $2; }
+
+hoy() {  __discover_my_productivity __today_gitlog $1; }  # Discover my (Git) productivity for today.
+ayer() {  __discover_my_productivity __ayer_gitlog $1; }  # Discover my (Git) productivity for yesterday. 
+week() {  __discover_my_productivity __week_gitlog $1; }  # Discover my (Git) productivity for this week.
+
+
+# Start an HTTP server in the current directory. Requires Python.
+# Uncomment appropriately.
+serve() { /usr/bin/env python3 -m http.server; }      # Python 3.x
+
+# Update all open source projects I'm following or contributing to
+update() {
+  echo "Updating open source projects"
+}
+
+setup() { . $HOME/.bash_profile; }
+
+af() { cd $GOPATH/src/bitbucket.org/afradio/; }

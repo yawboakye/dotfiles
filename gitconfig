@@ -1,0 +1,55 @@
+[alias]
+  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan) [%an]' --abbrev-commit --date=relative
+  b = branch --verbose
+  m = merge --no-ff
+  s = status -sb
+  d = !git --no-pager diff
+  patch = add -p
+  ouch = commit --amend --no-edit
+  st = stash --include-untracked
+  unst = stash pop
+  hero = push origin master
+	t = tag
+	remotes = remote --verbose
+	go = checkout -B
+	ca = !git add -A && git commit -avS
+	branches = branch -av
+  fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+  fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+  today = !git log --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%cr)%Creset' --author=\"$(git config user.name)\" --since=midnight --date=relative --abbrev-commit
+  yesterday = !git log --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%cr)%Creset' --author=\"$(git config user.name)\" --since=1.day.ago --before=midnight --date=relative --abbrev-commit
+  week = !git log --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%cr)%Creset' --author=\"$(git config user.name)\" --since=1.week.ago --date=relative --abbrev-commit
+	c = commit -vS
+	co = checkout
+	r = remote --verbose
+	forget = checkout -f
+	unstage = reset HEAD
+	stashed = stash list
+	db = branch -D
+
+[core]
+	editor = code --wait
+	trustctime = false
+	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+[color]
+	ui = true
+[help]
+	autocorrect = 1
+[push]
+	default = simple
+[merge]
+	log = true
+[apply]
+	; whitespace = fixed
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[user]
+	name = Yaw Boakye
+	email = wheresyaw@gmail.com
+	signingkey = 0130927B
+[github]
+	user = yawboakye
+[diff]
+	colorMoved = zebra

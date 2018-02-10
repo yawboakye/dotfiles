@@ -1,0 +1,147 @@
+# vim: filetype=sh
+# Set the system-wide preferred editor to Vim.
+# During commits, merges, conflict resolution, Git uses $EDITOR as the text editor.
+# Other programs read this variable too.
+export EDITOR="$(which vim)"
+
+# Don't exit the man page on quit. Or rather, continue to show the parts of the manpage
+# I already visited, after pressing q.
+export MANPAGER="less -X"
+
+# HISTORY
+
+# Uncomment to change the size of your history. Default is 500. The HISTCONTROL setting below,
+# which ignores duplicates and commands that start with a whitespace make the 500 enough, imo.
+# export HISTSIZE=500
+
+# When browsing history (using the arrow keys, etc) only show me unique commands. Also ignore commands that begin with whitespace.
+# `ignoreboth` is the same as (or rather the simpler version of) `ignorespace:ignoredups`.
+export HISTCONTROL=ignoreboth
+
+# Do not save the following commands (separated by colon) to history.
+export HISTIGNORE="ls:cd:cd -:..:...:exit:pwd:* -h:* --help:init:edit*:update_rbenv:history:clear:man:mac:"
+
+export LANG="en_US.UTF-8"
+
+export LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.o=01;35:*.mp3=01;35:*.wav=01;35:"
+
+# Highlight section titles in manual page. Uses /usr/bin/less as the pager
+export LESS_TERMCAP_mb=$'\E[0;31m'
+export LESS_TERMCAP_md=$'\E[4;33m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_md=$'\E[4;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[0;32m'
+
+
+# terminal prompt shows current git branch if directory is a git repository
+export PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+export LC_TYPE="en_US.UTF-8"
+
+export RBENV_PATH=$HOME/.rbenv
+export PATH="$RBENV_PATH/bin:$PATH"
+eval "$(rbenv init -)"
+
+export PATH="~/bin:$PATH"
+
+# added by Anaconda3 4.3.0 installer
+export PATH="/home/yawboakye/anaconda3/bin:$PATH"
+
+# Tab completion for `ssh` command.
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+[ -f /etc/bash_completion ] && . /etc/bash_completion
+
+shopt -s nocaseglob
+shopt -s cdspell
+shopt -s histappend
+
+# I clone and constantly update open source projects I'm interested in (use and/or contribute to)
+# like Rails, Devise, Play framework, and Rubygems such as jsonapi_resources.
+# export OPEN_SOURCE_DIR=path_to_your_open_source_projects
+
+# KEYS GO HERE (LOGIN KEYS, API SECRETS & IDS) 
+#
+# Examples are id/secret combination for Google, GitHub, Facebook, AWS, Twitter, Mandrill, ExpressPay, etc.
+#
+
+# MESTLife
+export MESTLIFE_DB_USERNAME=camyanguile
+export MESTLIFE_DB_PASSWORD=camyanguile_password
+export MESTLIFE_DB_NAME=mestlife_development
+export MESTLIFE_TEST_DB_NAME=mestlife_test
+
+
+QQ='lKm@W"!c}1tB81Avinr`@|&LEKdNNA'
+
+export GOPATH="$HOME/go"
+export GOROOT="/usr/local/go"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
+
+# AF Radio
+export SC_TOKEN="1-254798-241237225-816703eb923a3"
+export SC_CLIENTID="a44941c12e02820b7f5d080e24e843f6"
+export DB_PATH="/home/yawboakye/go/src/bitbucket.org/afradio/recorder-golang/db/afaudio.db"
+export AF_AUDIO_FILLER="/home/yawboakye/go/src/bitbucket.org/afradio/recorder-golang/bin/af.mp3"
+export AF_SCHED_URL="https://playonstage.herokuapp.com/api/today"
+export AF_NOTIF_URL="https://playonstage.herokuapp.com/api/record"
+export AF_API_BASE_URL="https://playonstage.herokuapp.com/api"
+export PLAYBACK_BUCKET="playback-audio"
+export FINGER_BUCKET="playback-fingerprints"
+export AF_AWS_PLAYBACK_BUCKET="playback-audio"
+export AF_AWS_FINGER_BUCKET="playback-fingerprints"
+export AF_AWS_REGION="us-west-2"
+export AWS_REGION="us-west-2"
+export AF_AWS_RECORDER_USER_KEY_ID="AKIAJ72JU2RSL36NRSKQ"
+export AF_AWS_RECORDER_USER_ACCESS_KEY="kBdpTlI86cv4P+Fyn9VtiOgRFF7Ej4/R/uv6FwQc"
+export AF_PROXY_BASIC_AUTH_USERNAME="afr-tech-admin"
+export AF_PROXY_BASIC_AUTH_PASSWORD="terrform-admin-pasword-293426323424"
+export MTN_ENDPOINT="https://forwarder-billing.afrad.io"
+export AF_SPID="2330110000211"
+export AF_SPPW="bmeB500"
+export ACOUSTID="C4jZwQBBly"
+
+# Test ACRCloud Project Credentials
+ACRCLOUD_HOST="identify-eu-west-1.acrcloud.com"
+ACCESS_KEY="3a7bbd7a1989fe75ae78f998a2960383"
+ACCESS_SECRET="qIt4q6qHbLKN0aiMuYloQtgW2qJFFptN1QE7nQ1W"
+
+# DevCongress Elections
+export ELECTIONS_DB_USERNAME="devcongress_elections"
+export ELECTIONS_DB_PASSWORD="devcongress_elections_password"
+export ELECTIONS_DB="devcongress_elections"
+export ELECTIONS_DB_TEST="devcongress_elections_test"
+# export DATABASE_URL="postgres://$ELECTIONS_DB_USERNAME:$ELECTIONS_DB_PASSWORD@localhost:5432/$ELECTIONS_DB"
+
+export XLMS="SDH2OSUQUEJ3PGTCFK2JXFEWXKGTY3IJWYGN6T3OVXP7CZQZACFLBOOW"
+export XLMP="GBCNRYKNI36KTLO42J6CFD4QCFBN7SF4D7YQJL2KKX53HSFWURY27PRF"
+
+#OMG
+export AWS_ACCESS_KEY="AKIAIDMBOD2QEPLGXDTQ"
+export AWS_SECRET_KEY="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"
+export AWS_LOGIN="https://518853923678.signin.aws.amazon.com/console"
+export AURORA="mysql2://omgvoicesocrates:Dn5CxbzKwLUYjZXc2JGFNAqCbPf287UbzDDkgn5K@localhost:3306/omgvoice-high-beanstalk"
+export IPINFO_ACCESS_TOKEN="bd726922e6097e"
+
+# DropQue
+export AWS_BUCKET="mandelbrotian"
+
+# SeanGolf
+export DARK_SKY_API_KEY="0e0de0cb9aaf5598989f51f53895627f"
+
+# SIKA
+export PLAID_CLIENT_ID="553910300effc0670b8c93e8"
+export PLAID_SECRET="05bad1e5fcb38abdcd4c44adc69d48"
+export PLAID_PUBLIC_KEY="a16a2dbc90c6538d7479de6ecfbf16"
+export PLAID_ENV="sandbox"
+
+#GFH
+## NCX
+export BRAINTREE_ENV="sandbox"
+export BRAINTREE_MERCHANT_ID="xv42mnthh49kc4sc"
+export BRAINTREE_PRIVATE_KEY="a6ee47d776475efe9586b7365b0b3161"
+export BRAINTREE_PUBLIC_KEY="9mzjz3ynwy93cxtz"
+
+export NVM_DIR="/home/yawboakye/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

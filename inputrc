@@ -1,0 +1,19 @@
+set completion-ignore-case
+# set print-completions-horizontally
+#
+set show-all-if-ambiguous
+set match-hidden-files off
+set visible-stats
+set mark-symlinked-directories
+set skip-completed-text
+
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# key bindings
+#
+"\t": menu-complete
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+"\e[3;3~": kill-word
