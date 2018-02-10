@@ -61,17 +61,10 @@ shopt -s histappend
 # like Rails, Devise, Play framework, and Rubygems such as jsonapi_resources.
 # export OPEN_SOURCE_DIR=path_to_your_open_source_projects
 
-# KEYS GO HERE (LOGIN KEYS, API SECRETS & IDS) 
+# KEYS GO HERE (LOGIN KEYS, API SECRETS & IDS)
 #
 # Examples are id/secret combination for Google, GitHub, Facebook, AWS, Twitter, Mandrill, ExpressPay, etc.
 #
-
-# MESTLife
-export MESTLIFE_DB_USERNAME=camyanguile
-export MESTLIFE_DB_PASSWORD=camyanguile_password
-export MESTLIFE_DB_NAME=mestlife_development
-export MESTLIFE_TEST_DB_NAME=mestlife_test
-
 
 QQ='lKm@W"!c}1tB81Avinr`@|&LEKdNNA'
 
@@ -113,7 +106,6 @@ export ELECTIONS_DB_PASSWORD="devcongress_elections_password"
 export ELECTIONS_DB="devcongress_elections"
 export ELECTIONS_DB_TEST="devcongress_elections_test"
 # export DATABASE_URL="postgres://$ELECTIONS_DB_USERNAME:$ELECTIONS_DB_PASSWORD@localhost:5432/$ELECTIONS_DB"
-
 export XLMS="SDH2OSUQUEJ3PGTCFK2JXFEWXKGTY3IJWYGN6T3OVXP7CZQZACFLBOOW"
 export XLMP="GBCNRYKNI36KTLO42J6CFD4QCFBN7SF4D7YQJL2KKX53HSFWURY27PRF"
 

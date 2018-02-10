@@ -47,5 +47,3 @@ alias activate="test -d venv && source venv/bin/activate"
 # Push from current branch to master on Heroku, and run bin/rake db:migrate.
 # The second part fails (without problems) if it's not a Rails project.
 alias stage='git push heroku "$(git rev-parse --abbrev-ref HEAD 2> /dev/null)":master && heroku run bin/rake db:migrate'
-alias op="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoclean && sudo apt autoremove"
-alias i="sudo apt update && sudo apt install -y"
