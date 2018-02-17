@@ -1,0 +1,118 @@
+color elflord
+set nocursorline " don't highlight current line
+set nospell
+set shellcmdflag=-lic
+set autowrite
+
+" stop the tab bullshit
+set tabstop=2
+set expandtab
+retab
+set t_Co=256
+set nolist
+set relativenumber
+
+" enable omnicomplete
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+let g:user_emmet_leader_key='<C-;>'
+
+" NERDtree should ignore these files/directory
+let NERDTreeIgnore=['node_modules$[[dir]]', 'bower_components$[[dir]]', 'tmp$[[dir]]', 'dist[[dir]]']
+
+" autocmds
+autocmd bufreadpre *.md setlocal textwidth=120
+
+" Space indentation for filetypes.
+autocmd BufNew,BufRead,BufReadPre *.go setlocal noexpandtab shiftwidth=4 softtabstop=4
+autocmd BufNew,BufRead,BufReadPre *.c  setlocal noexpandtab shiftwidth=8 softtabstop=8
+
+" Keyboard shortcuts
+" INSERT mode mappings
+inoremap jj <ESC>
+inoremap kk <ESC>
+inoremap gg <c-o>O
+inoremap ;; <ESC>A;
+
+" NORMAL mode mappings
+nnoremap ;; :%s///Ig<left><left><left><left>
+nnoremap ;' :%s///cg<left><left><left><left>
+nnoremap ;j :%s///n<left><left><left>
+nnoremap -  ddp
+nnoremap ff :w<CR>
+cmap w!! w !sudo tee >/dev/null %
+
+" highlight search
+"set hlsearch
+"nmap <leader>hl :let @/ = ""<CR>
+
+" gui settings
+" if (&t_Co == 256 || has('gui_running'))
+"   colorscheme vividchalk
+" endif
+
+" Disambiguate ,a & ,t from the Align plugin, making them fast again.
+"
+" This section is here to prevent AlignMaps from adding a bunch of mappings
+" that interfere with the very-common ,a and ,t mappings. This will get run
+" at every startup to remove the AlignMaps for the *next* vim startup.
+"
+" If you do want the AlignMaps mappings, remove this section, remove
+" ~/.vim/bundle/Align, and re-run rake in maximum-awesome.
+function! s:RemoveConflictingAlignMaps()
+  if exists("g:loaded_AlignMapsPlugin")
+    AlignMapsClean
+  endif
+endfunction
+command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
+silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+" Go specific
+autocmd FileType go nmap <Leader>s <Plug>(go-implements)
+autocmd FileType go nmap <Leader>gd <Plug>(go-doc)
+autocmd FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+autocmd FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+autocmd FileType go nmap <leader>e <Plug>(go-rename)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>B <Plug>(go-build)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+autocmd FileType go nmap <leader>i <Plug>(go-info)
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+autocmd Filetype go setlocal commentstring=#\ %s
+
+let g:go_fmt_command = "goimports"
+let g:go_highlight_build_constraints = 1
+let g:go_metalinter_autosave = 1
+let g:go_auto_type_info = 1
+" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:rehash256 = 1
+let g:molokai_original = 1
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](dist|node_modules|bower_components|tmp)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+
+" Prettier
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 0
+let g:prettier#config#trailing_comma = "es5"
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.scss,*.less,*.json,*.graphql Prettier
+
+" Terraform
+let g:terraform_align = 1
+let g:terraform_remap_spacebar = 1
+autocmd FileType terraform setlocal commentstring=#\ %s
